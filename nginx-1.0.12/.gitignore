@@ -1,2 +1,4 @@
 /logs/
 /temp/
+/scgi_temp/
+/uwsgi_temp/
