@@ -1,0 +1,192 @@
+﻿.left{
+width:285px;
+height: auto;
+float:left;
+padding-left:130px;
+}
+.leftnav{
+width:285px;
+float:left;
+height:auto;
+}
+.leftnav ul{
+padding:0;
+margin:0;
+padding-top:20px;
+height:220px;
+}
+.leftnav li{
+    width:285px;
+	display:inline;
+	float:left;
+	height:38px;
+	padding-top:5px;
+}
+.leftnav1-a:link,.leftnav1-a:visited{
+background-image:url(../images/leftnav1.jpg);
+display:block;
+width:285px;
+height:38px;
+}
+#chairmanspeech .leftnav1-a,.leftnav1-a:hover{
+background-image:url(../images/leftnav12.jpg);
+display:block;
+width:285px;
+height:38px;
+}
+.leftnav2-a:link,.leftnav2-a:visited{
+background-image:url(../images/leftnav2.jpg);
+display:block;
+width:285px;
+height:38px;
+}
+#areaIntroduction .leftnav2-a,.leftnav2-a:hover{
+background-image:url(../images/leftnav22.jpg);
+display:block;
+width:285px;
+height:38px;
+}
+.leftnav3-a:link,.leftnav3-a:visited{
+background-image:url(../images/leftnav3.jpg);
+display:block;
+width:285px;
+height:38px;
+}
+#companyIntroduction .leftnav3-a,.leftnav3-a:hover{
+background-image:url(../images/leftnav32.jpg);
+display:block;
+width:285px;
+height:38px;
+}
+.leftnav4-a:link,.leftnav4-a:visited{
+background-image:url(../images/leftnav4.jpg);
+display:block;
+width:285px;
+height:38px;
+}
+#qualification .leftnav4-a,.leftnav4-a:hover{
+background-image:url(../images/leftnav42.jpg);
+display:block;
+width:285px;
+height:38px;
+}
+.leftnav5-a:link,.leftnav5-a:visited{
+background-image:url(../images/leftnav5.jpg);
+display:block;
+width:285px;
+height:38px;
+}
+#newsList .leftnav5-a,#newsDetail .leftnav5-a,.leftnav5-a:hover{
+background-image:url(../images/leftnav52.jpg);
+display:block;
+width:285px;
+height:38px;
+}
+.leftnav6-a:link,.leftnav6-a:visited{
+background-image:url(../images/leftnav6.jpg);
+display:block;
+width:285px;
+height:38px;
+}
+#basicBusiness .leftnav6-a,.leftnav6-a:hover{
+background-image:url(../images/leftnav62.jpg);
+display:block;
+width:285px;
+height:38px;
+}
+.leftnav7-a:link,.leftnav7-a:visited{
+background-image:url(../images/leftnav7.jpg);
+display:block;
+width:285px;
+height:38px;
+}
+#corporationDistribution .leftnav7-a,.leftnav7-a:hover{
+background-image:url(../images/leftnav72.jpg);
+display:block;
+width:285px;
+height:38px;
+}
+.leftnav8-a:link,.leftnav8-a:visited{
+background-image:url(../images/leftnav8.jpg);
+display:block;
+width:285px;
+height:38px;
+}
+#dataServices .leftnav8-a,.leftnav8-a:hover{
+background-image:url(../images/leftnav82.jpg);
+display:block;
+width:285px;
+height:38px;
+}
+.leftnav9-a:link,.leftnav9-a:visited{
+background-image:url(../images/leftnav9.jpg);
+display:block;
+width:285px;
+height:38px;
+}
+#baseIntroduction .leftnav9-a,.leftnav9-a:hover{
+background-image:url(../images/leftnav92.jpg);
+display:block;
+width:285px;
+height:38px;
+}
+.leftnav10-a:link,.leftnav10-a:visited{
+background-image:url(../images/leftnav10.jpg);
+display:block;
+width:285px;
+height:38px;
+}
+#baseQualification .leftnav10-a,.leftnav10-a:hover{
+background-image:url(../images/leftnav102.jpg);
+display:block;
+width:285px;
+height:38px;
+}
+.leftnav11-a:link,.leftnav11-a:visited{
+background-image:url(../images/leftnav11.jpg);
+display:block;
+width:285px;
+height:38px;
+}
+#baseProduct .leftnav11-a,.leftnav11-a:hover{
+background-image:url(../images/leftnav112.jpg);
+display:block;
+width:285px;
+height:38px;
+}
+.leftnav12-a:link,.leftnav12-a:visited{
+background-image:url(../images/leftnav14.jpg);
+display:block;
+width:285px;
+height:38px;
+}
+#importantCustomer .leftnav12-a,.leftnav12-a:hover{
+background-image:url(../images/leftnav142.jpg);
+display:block;
+width:285px;
+height:38px;
+}
+.leftnav13-a:link,.leftnav13-a:visited{
+background-image:url(../images/leftnav13.jpg);
+display:block;
+width:285px;
+height:38px;
+}
+#contactUs .leftnav13-a,.leftnav13-a:hover{
+background-image:url(../images/leftnav132.jpg);
+display:block;
+width:285px;
+height:38px;
+}
+.leftnav15-a:link,.leftnav15-a:visited{
+background-image:url(../images/leftnav15.jpg);
+display:block;
+width:285px;
+height:38px;
+}
+#companyTatget .leftnav15-a,.leftnav15-a:hover{
+background-image:url(../images/leftnav152.jpg);
+display:block;
+width:285px;
+height:38px;
+}

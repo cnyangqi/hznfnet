@@ -1,0 +1,190 @@
+﻿html,body{
+    margin:0;
+	padding:0;
+	text-align:center;
+	font-size:12px;
+	font-family:宋体,verdana,arial,helvetica,sans-serif;
+	color:#000000;
+	background-image:url(../images/neimainbg.jpg);
+	background-repeat:repeat-x;
+	background-color:#faf6f3;
+	}
+
+.subpage{
+width:698px;
+margin-top:2px;
+height: auto;
+float:left;
+margin-left:0px;
+background-image:url(../images/neirightbg.jpg);
+background-repeat:repeat-y;
+background-position:left;
+text-align:center;
+min-height:680px;
+}
+.subpage-upper{
+height:161px;
+width:655px;
+background-color:#FFFFFF;
+margin-top:50px;
+margin-left:25px;
+padding-top:10px;
+}
+.subpage-lower{
+width:698px;
+height: auto;
+padding-left:70px;
+padding-top:50px;
+color:#977045;
+line-height:36px;
+text-align:left;
+letter-spacing:1pt;
+}
+.subpage-table{
+color:#333333;
+font-weight:bold;
+font-size:12px;
+text-align:center;
+}
+.subpage-table img{
+border:#bbbab6 1px;
+}
+.subpage-lower ul{
+margin:0;
+padding:0;
+width:698px;
+}
+.subpage-lower ul li{
+color:#5d5a54;
+	display:inline;
+	float: left;
+	height:30px;
+	line-height:30px;
+	width:600px;
+	padding-top:5px;
+	text-align:right;
+	}
+.title{
+float:left;
+text-align:left;
+ width:420px;
+ text-align:left;
+ color:#5d5a54;
+}
+.subpage-lower a:link,.subpage-lower a:visited,.subpage-lower a:active{
+display:block;
+color:#5d5a54;
+text-decoration:none;
+}
+.subpage-lower a:hover{
+text-decoration:none;
+display:block;
+color:#999999;
+}
+
+.asppager {
+float: right;
+width:673px;
+display:block;
+text-align:right;
+height:22px;
+clear:both;
+padding-top:40px;
+padding-right:25px;
+padding-bottom:30px;
+font-family:Arial, Helvetica, sans-serif;
+font-size:12px;
+font-weight:normal;
+}
+
+.pagebutton{
+padding:7px;
+padding-top:2px;
+padding-bottom:2px;
+border:1px solid #d4c8ae;
+margin-left:5px;
+text-decoration:none;
+background-color:#eae5d8;
+color:#7bb72e;
+width:22px;
+font-weight:normal;
+}
+
+.asppager a:hover {
+background-color:#7bb72e;
+border:1px solid #2e7332;
+color: #FFFFFF;
+}
+.active_tnt_link {
+padding:7px;
+padding-top:2px;
+padding-bottom:2px;
+border:1px solid #2e7332;
+margin-left:5px;
+text-decoration:none;
+background-color:#7bb72e;
+color: #FFFFFF;
+width:22px;
+cursor:default;
+}
+
+.firstlastbutton{
+padding:7px;
+padding-top:2px;
+padding-bottom:2px;
+border:1px solid #d4c8ae;
+margin-left:5px;
+text-align:center;
+text-decoration:none;
+background-color:#eae5d8;
+color:#7bb72e;
+width:55px;
+font-weight:normal;
+}
+.subpage-news{
+width:698px;
+height:auto;
+padding-top:50px;
+color:#977045;
+line-height:36px;
+text-align:left;
+letter-spacing:1pt;
+min-height:710px;
+}
+.subpage-news-title{
+text-align:center; 
+width:698px; 
+float:left;
+font-weight:bold; 
+font-size:14px;
+color:#333333; 
+}
+.subpage-news-time{
+text-align:center; 
+width:698px;
+float:left;
+font-size:12px; 
+color:#333333;
+}
+.subpage-news-content{
+float:left;
+color:#333333;
+width:550px;
+text-align:left; 
+letter-spacing:0.1em;
+padding-left:120px;
+height:auto;
+background-image:url(../images/neirightbg.jpg);
+background-repeat:repeat-y;
+background-position:left;
+}
+.end{
+float:left;
+width:100%;
+height:106px;
+background-image:url(../images/endbg.jpg);
+background-repeat:repeat-x;
+text-align: center;
+margin:0 auto;
+
+}
