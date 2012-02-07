@@ -13,7 +13,6 @@ var ioc = {
 				type : 'org.nutz.ioc.aop.config.impl.AnnotationAopConfigration'
 			} ]
 		}
-
 	},
 
 	txNONE : {

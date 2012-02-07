@@ -14,6 +14,7 @@ import org.nutz.log.Logs;
 import org.nutz.mvc.adaptor.VoidAdaptor;
 import org.nutz.mvc.annotation.AdaptBy;
 import org.nutz.mvc.annotation.At;
+import org.nutz.mvc.annotation.Param;
 import org.nutz.mvc.upload.TempFile;
 
 @IocBean
@@ -23,13 +24,20 @@ public class UploadModule {
 
 	@At("/upload/normal")
 	@AdaptBy(args = {"ioc:upload"})
-	public Object upload(TempFile tempFile) {
-		Map<String, Object> re = new HashMap<String, Object>();
-		if (tempFile != null)
-			re.put("ok", true);
-		else
-			re.put("ok", false);
-		return re;
+	public String upload(@Param("imgFile") TempFile file) {
+
+		System.out.println(file.getMeta().getName());
+		System.out.println(file.getFile());
+		// Map<String, Object> re = new HashMap<String, Object>();
+		// if (imgFile != null) {
+		// re.put("ok", true);
+		// System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		// } else {
+		// re.put("ok", false);
+		// System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		// }
+		// return re;
+		return "";
 	}
 
 	@At("/upload/html5")
