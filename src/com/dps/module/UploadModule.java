@@ -2,9 +2,12 @@ package com.dps.module;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,7 +20,6 @@ import org.nutz.mvc.annotation.AdaptBy;
 import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.Attr;
 import org.nutz.mvc.annotation.Fail;
-import org.nutz.mvc.annotation.Ok;
 import org.nutz.mvc.annotation.Param;
 import org.nutz.mvc.upload.TempFile;
 
@@ -41,63 +43,71 @@ public class UploadModule {
 	@At("/upload/kindeditor")
 	@AdaptBy(args = {"ioc:upload"})
 	@Fail("->:/handleOutOfSize")
-	@Ok("json")
 	public Object upload(	@Param("imgFile") TempFile file,
 							@Param("dir") String dirName,
 							HttpServletRequest request) {
 
+		// 文件分类定义
+		HashMap<String, String> extMap = new HashMap<String, String>();
+		extMap.put("image", "gif,jpg,jpeg,png,bmp");
+		extMap.put("flash", "swf,flv");
+		extMap.put("media", "swf,flv,mp3,wav,wma,wmv,mid,avi,mpg,asf,rm,rmvb");
+		extMap.put("file", "doc,docx,xls,xlsx,ppt,htm,html,txt,zip,rar,gz,bz2");
+
+		// 检查扩展名
+		String fileName = file.getFile().getName();
+		dirName = dirName != null ? dirName : "image";// 文件分类为空的时候默认为图片文件类型
+
+		String fileExt = fileName.substring(fileName.lastIndexOf(".") + 1).toLowerCase();
+		if (!Arrays.<String> asList(extMap.get(dirName).split(",")).contains(fileExt)) {
+			return msgResponse(1, "上传文件扩展名是不允许的扩展名。\n只允许" + extMap.get(dirName) + "格式。");
+		}
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		String ymd = sdf.format(new Date());
+
 		// 文件保存目录路径
 		StringBuilder savePath = new StringBuilder(request.getServletContext().getRealPath("/"));
-		savePath.append("attached/");
+		savePath.append("kindeditor/attached/");
+		savePath.append(dirName).append("/");
+		savePath.append(ymd).append("/");
+		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
+
+		// savePath.append(file.getMeta().getFileLocalName());// 默认为本地上传文件原名
+
+		StringBuilder newFileName = new StringBuilder(df.format(new Date())).append("_");// 由于中文文件名可能会导致问题，所以采取随机非中文文件名
+		newFileName.append(new Random().nextInt(1000)).append(".").append(fileExt);
+
+		savePath.append(newFileName);
 
 		// 文件保存目录URL
 		StringBuilder saveUrl = new StringBuilder(request.getContextPath());
-		saveUrl.append("/attached/");
+		saveUrl.append("/kindeditor/attached/");
+		saveUrl.append(dirName).append("/");
+		saveUrl.append(ymd).append("/");
+		saveUrl.append(newFileName);
 
-		if (file != null) {
-			HashMap<String, String> extMap = new HashMap<String, String>();
-			extMap.put("image", "gif,jpg,jpeg,png,bmp");
-			extMap.put("flash", "swf,flv");
-			extMap.put("media", "swf,flv,mp3,wav,wma,wmv,mid,avi,mpg,asf,rm,rmvb");
-			extMap.put("file", "doc,docx,xls,xlsx,ppt,htm,html,txt,zip,rar,gz,bz2");
-
-			String fileName = file.getFile().getName();
-			dirName = dirName != null ? dirName : "image";
-
-			// 检查扩展名
-			String fileExt = fileName.substring(fileName.lastIndexOf(".") + 1).toLowerCase();
-			if (!Arrays.<String> asList(extMap.get(dirName).split(",")).contains(fileExt)) {
-				return msgResponse(1, "上传文件扩展名是不允许的扩展名。\n只允许" + extMap.get(dirName) + "格式。");
+		// 自动归档文件
+		try {
+			if (Files.copyFile(	new File(file.getFile().getAbsolutePath()),
+								new File(savePath.toString()))) {
+				return msgResponse(0, saveUrl.toString());
 			}
 
-			// 成功上传的文件归档
-			savePath.append(dirName).append("/");
-			saveUrl.append(dirName).append("/");
+			return msgResponse(1, "服务器自动归档文件失败。");
+		}
+		catch (IOException e) {
 
-			try {
-
-				if (Files.copyFile(	file.getFile(),
-									new File(savePath.toString().replaceAll("\\", "/"))))
-					return msgResponse(0, saveUrl.toString());
-
-				return msgResponse(1, "服务器移动文件失败。");
-			}
-			catch (IOException e) {
-
-				if (log.isDebugEnabled()) {
-					StringBuilder tmp = new StringBuilder("Move file fail!! File ");
-					tmp.append(file.getFile().getName())
-						.append(" move to ")
-						.append(savePath)
-						.append(" fail ");
-					log.debug(tmp.toString());
-				}
-
-				return msgResponse(1, "服务器移动文件失败。");
+			if (log.isDebugEnabled()) {
+				StringBuilder tmp = new StringBuilder("Move file fail!! File ");
+				tmp.append(file.getFile().getAbsolutePath())
+					.append(" move to ")
+					.append(savePath)
+					.append(" fail ");
+				log.debug(tmp.toString());
 			}
 
-		} else {
-			return msgResponse(1, "上传文件失败。");
+			return msgResponse(1, "服务器自动归档文件失败。");
 		}
 
 	}
