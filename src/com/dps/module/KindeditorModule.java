@@ -14,8 +14,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.nutz.ioc.aop.Aop;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.lang.Files;
@@ -43,7 +41,7 @@ import org.nutz.mvc.upload.TempFile;
  */
 @IocBean
 @At("/kindeditor")
-public class KindeditorModule {
+public class KindEditorModule {
 
 	private static final Log log = Logs.get();
 
@@ -58,9 +56,7 @@ public class KindeditorModule {
 	@AdaptBy(args = {"ioc:upload"})
 	@Fail("->:/handleOutOfSize")
 	@Aop("log")
-	public Object upload(	@Param("imgFile") TempFile file,
-							@Param("dir") String dirName,
-							HttpServletRequest request) {
+	public Object upload(@Param("imgFile") TempFile file, @Param("dir") String dirName) {
 
 		// 文件分类定义
 		HashMap<String, String> extMap = new HashMap<String, String>();
@@ -83,7 +79,7 @@ public class KindeditorModule {
 
 		// 文件保存目录路径
 		StringBuilder savePath = new StringBuilder(Mvcs.getServletContext().getRealPath("/"));
-		savePath.append("kindeditor/attached/");
+		savePath.append("/kindeditor/attached/");
 		savePath.append(dirName).append("/");
 		savePath.append(ymd).append("/");
 		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -96,7 +92,7 @@ public class KindeditorModule {
 		savePath.append(newFileName);
 
 		// 文件保存目录URL
-		StringBuilder saveUrl = new StringBuilder(request.getContextPath());
+		StringBuilder saveUrl = new StringBuilder(Mvcs.getReq().getContextPath());
 		saveUrl.append("/kindeditor/attached/");
 		saveUrl.append(dirName).append("/");
 		saveUrl.append(ymd).append("/");
@@ -171,14 +167,14 @@ public class KindeditorModule {
 	 */
 	@At
 	@SuppressWarnings({"rawtypes", "unchecked"})
-	public Object list(HttpServletRequest request) {
+	public Object list() {
 
 		String[] fileTypes = new String[]{"gif", "jpg", "jpeg", "png", "bmp"};// 图片扩展名
-		StringBuilder rootPath = new StringBuilder(Mvcs.getServletContext().getRealPath("/")).append("kindeditor/attached/");
-		StringBuilder rootUrl = new StringBuilder(request.getContextPath()).append("/kindeditor/attached/");
+		StringBuilder rootPath = new StringBuilder(Mvcs.getServletContext().getRealPath("/")).append("/kindeditor/attached/");
+		StringBuilder rootUrl = new StringBuilder(Mvcs.getReq().getContextPath()).append("/kindeditor/attached/");
 
 		// 检查请求目录合法性
-		String dirName = request.getParameter("dir");
+		String dirName = Mvcs.getReq().getParameter("dir");
 		if (dirName != null) {
 			if (!Arrays.<String> asList(new String[]{"image", "flash", "media", "file"})
 						.contains(dirName)) {
@@ -198,7 +194,8 @@ public class KindeditorModule {
 		}
 
 		// 根据path参数，设置各路径和URL
-		String path = request.getParameter("path") != null ? request.getParameter("path") : "";
+		String path = Mvcs.getReq().getParameter("path") != null ? Mvcs.getReq()
+																		.getParameter("path") : "";
 		String currentPath = rootPath + path;
 		String currentUrl = rootUrl + path;
 		String currentDirPath = path;
@@ -210,8 +207,9 @@ public class KindeditorModule {
 		}
 
 		// 排序形式，name or size or type
-		String order = request.getParameter("order") != null ? request.getParameter("order")
-																		.toLowerCase() : "name";
+		String order = Mvcs.getReq().getParameter("order") != null ? Mvcs.getReq()
+																			.getParameter("order")
+																			.toLowerCase() : "name";
 
 		// 不允许使用..移动到上一级目录
 		if (path.indexOf("..") >= 0) {

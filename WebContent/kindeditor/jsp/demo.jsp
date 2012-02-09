@@ -15,6 +15,14 @@ String htmlData = request.getParameter("content1") != null ? request.getParamete
 	<script charset="utf-8" src="../plugins/code/prettify.js"></script>
 	<script>
 	
+		function htmlspecialchars(str){
+			str=str.replace(/&/g,'&amp;');
+			str=str.replace(/</g,'&lt;');
+			str=str.replace(/>/g,'&gt;');
+			str=str.replace(/"/g,'&quot;');
+			return str;
+		}
+	
 		KindEditor.ready(function(K) {
 			var editor1 = K.create('textarea[name="content1"]', {
 				cssPath : '../plugins/code/prettify.css',
@@ -40,7 +48,7 @@ String htmlData = request.getParameter("content1") != null ? request.getParamete
 <body>
 	<%=htmlData%>
 	<form name="example" method="post" action="demo.jsp">
-		<textarea name="content1" cols="100" rows="8" style="width:700px;height:200px;visibility:hidden;"><%=htmlspecialchars(htmlData)%></textarea>
+		<textarea name="content1" cols="100" rows="8" style="width:700px;height:200px;visibility:hidden;">javascript:htmlspecialchars(htmlData)</textarea>
 		<br />
 		<input type="submit" name="button" value="提交内容" /> (提交快捷键: Ctrl + Enter)
 	</form>
