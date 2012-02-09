@@ -35,6 +35,7 @@ var ioc = {
 		type : 'org.nutz.aop.interceptor.TransactionInterceptor',
 		args : [ 8 ]
 	},
+
 	// 声明一个log进行日志记录
 	log : {
 		type : 'org.nutz.aop.interceptor.LoggingMethodInterceptor'
