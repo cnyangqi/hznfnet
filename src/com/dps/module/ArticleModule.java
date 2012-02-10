@@ -1,5 +1,7 @@
 package com.dps.module;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,11 +14,17 @@ import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.Param;
 import org.nutz.service.EntityService;
 
-import com.dps.bean.User;
+import com.dps.bean.Article;
+import com.dps.tools.MessageHelp;
 
-@At("/user")
+/**
+ * 文章管理模块
+ * 
+ * @author yangq(qi.yang.cn@gmail.com)
+ */
+@At("/article")
 @IocBean(fields = {"dao"})
-public class UserModule extends EntityService<User> {
+public class ArticleModule extends EntityService<Article> {
 
 	private static final Log log = Logs.get();
 
@@ -25,10 +33,10 @@ public class UserModule extends EntityService<User> {
 		if (rows < 1)
 			rows = 10;
 		Pager pager = dao().createPager(page, rows);
-		List<User> list = dao().query(User.class, null, pager);
+		List<Article> list = dao().query(Article.class, null, pager);
 		Map<String, Object> map = new HashMap<String, Object>();
 		if (pager != null) {
-			pager.setRecordCount(dao().count(User.class));
+			pager.setRecordCount(dao().count(Article.class));
 			map.put("pager", pager);
 		}
 		map.put("list", list);
@@ -36,8 +44,16 @@ public class UserModule extends EntityService<User> {
 	}
 
 	@At
-	public boolean add(@Param("..") User obj) {
+	public Object add(@Param("..") Article obj) {
+		if (obj == null)
+			return MessageHelp.rtn(false);
+
 		try {
+			obj.setContent(htmlspecialchars(obj.getContent()));// 转换文章正文中特殊的HTML字符
+			obj.setCreateDate(new Date());// 创建日期
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+			obj.setSequNum(Long.valueOf(sdf.format(new Date())));// 文章序列
+
 			dao().insert(obj);
 			return true;
 		}
@@ -49,7 +65,7 @@ public class UserModule extends EntityService<User> {
 	}
 
 	@At
-	public boolean delete(@Param("..") User obj) {
+	public boolean delete(@Param("..") Article obj) {
 		try {
 			dao().delete(obj);
 			return true;
@@ -62,7 +78,7 @@ public class UserModule extends EntityService<User> {
 	}
 
 	@At
-	public boolean update(@Param("..") User obj) {
+	public boolean update(@Param("..") Article obj) {
 		try {
 			dao().update(obj);
 			return true;
@@ -72,5 +88,19 @@ public class UserModule extends EntityService<User> {
 				log.debug("E!!", e);
 			return false;
 		}
+	}
+
+	/**
+	 * 转换Html特殊字符
+	 * 
+	 * @param str
+	 * @return
+	 */
+	private String htmlspecialchars(String str) {
+		str = str.replaceAll("&", "&amp;");
+		str = str.replaceAll("<", "&lt;");
+		str = str.replaceAll(">", "&gt;");
+		str = str.replaceAll("\"", "&quot;");
+		return str;
 	}
 }

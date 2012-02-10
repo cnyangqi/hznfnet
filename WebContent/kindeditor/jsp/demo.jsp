@@ -2,32 +2,25 @@
 <%
 request.setCharacterEncoding("UTF-8");
 String htmlData = request.getParameter("content1") != null ? request.getParameter("content1") : "";
+String ctx=request.getContextPath();
 %>
 <!doctype html>
 <html>
 <head>
 	<meta charset="utf-8" />
 	<title>KindEditor JSP</title>
-	<link rel="stylesheet" href="../themes/default/default.css" />
-	<link rel="stylesheet" href="../plugins/code/prettify.css" />
-	<script charset="utf-8" src="../kindeditor.js"></script>
-	<script charset="utf-8" src="../lang/zh_CN.js"></script>
-	<script charset="utf-8" src="../plugins/code/prettify.js"></script>
+	<link rel="stylesheet" href="${ctx}/kindeditor/themes/default/default.css" />
+	<link rel="stylesheet" href="${ctx}/kindeditor/plugins/code/prettify.css" />
+	<script charset="utf-8" src="${ctx}/kindeditor/kindeditor.js"></script>
+	<script charset="utf-8" src="${ctx}/kindeditor/lang/zh_CN.js"></script>
+	<script charset="utf-8" src="${ctx}/kindeditor/plugins/code/prettify.js"></script>
 	<script>
 	
-		function htmlspecialchars(str){
-			str=str.replace(/&/g,'&amp;');
-			str=str.replace(/</g,'&lt;');
-			str=str.replace(/>/g,'&gt;');
-			str=str.replace(/"/g,'&quot;');
-			return str;
-		}
-	
 		KindEditor.ready(function(K) {
-			var editor1 = K.create('textarea[name="content1"]', {
-				cssPath : '../plugins/code/prettify.css',
-				uploadJson : '${base}'+'/kindeditor/upload',
-				fileManagerJson : '${base}'+'/kindeditor/list',
+			var editor = K.create('textarea[name="content"]', {
+				cssPath : '${ctx}/kindeditor/plugins/code/prettify.css',
+				uploadJson : '${ctx}/kindeditor/upload',
+				fileManagerJson : '${ctx}/kindeditor/list',
 				allowFileManager : true,
 				afterCreate : function() {
 					var self = this;
@@ -47,19 +40,10 @@ String htmlData = request.getParameter("content1") != null ? request.getParamete
 </head>
 <body>
 	<%=htmlData%>
-	<form name="example" method="post" action="demo.jsp">
-		<textarea name="content1" cols="100" rows="8" style="width:700px;height:200px;visibility:hidden;">javascript:htmlspecialchars(htmlData)</textarea>
+	<form name="example" method="post" action="/article/add">
+		<textarea name="content" cols="100" rows="8" style="width:700px;height:200px;visibility:hidden;"></textarea>
 		<br />
 		<input type="submit" name="button" value="提交内容" /> (提交快捷键: Ctrl + Enter)
 	</form>
 </body>
 </html>
-<%!
-private String htmlspecialchars(String str) {
-	str = str.replaceAll("&", "&amp;");
-	str = str.replaceAll("<", "&lt;");
-	str = str.replaceAll(">", "&gt;");
-	str = str.replaceAll("\"", "&quot;");
-	return str;
-}
-%>
