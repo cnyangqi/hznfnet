@@ -25,12 +25,7 @@ public class Test {
 			throw Lang.wrapThrow(e);
 		}
 
-
-		Date runTime=evenm
-		
 		JobDetail job = JobBuilder.newJob(HelloJob.class).withIdentity("job1", "group1").build();
-		
-		
 
 	}
 }
