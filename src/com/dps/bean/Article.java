@@ -10,6 +10,7 @@ import org.nutz.dao.entity.annotation.Table;
  * 文章实体
  * 
  * @author yangq(qi.yang.cn@gmail.com)
+ * @since 2012-2-12
  */
 @Data
 @Table("t_article")
@@ -22,15 +23,15 @@ public class Article {
 	@Column("id")
 	private Integer id;
 	/**
-	 * 文章序列 文章排序使用
-	 */
-	@Column("sequ_num")
-	private Long sequNum;
-	/**
 	 * 文章类型
 	 */
 	@Column("type")
 	private Integer type;
+	/**
+	 * 文章序列 文章排序使用
+	 */
+	@Column("sequ_num")
+	private Long sequNum;
 	/**
 	 * 文章标题
 	 */
