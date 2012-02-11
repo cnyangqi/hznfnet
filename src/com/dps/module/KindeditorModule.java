@@ -24,6 +24,7 @@ import org.nutz.mvc.annotation.AdaptBy;
 import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.Attr;
 import org.nutz.mvc.annotation.Fail;
+import org.nutz.mvc.annotation.Ok;
 import org.nutz.mvc.annotation.Param;
 import org.nutz.mvc.upload.TempFile;
 
@@ -44,6 +45,13 @@ import org.nutz.mvc.upload.TempFile;
 public class KindEditorModule {
 
 	private static final Log log = Logs.get();
+
+	/**
+	 * Kind测试文件入口
+	 */
+	@At
+	@Ok("jsp:jsp.kind")
+	public void test() {}
 
 	/**
 	 * 本地文件上传
@@ -79,7 +87,7 @@ public class KindEditorModule {
 
 		// 文件保存目录路径
 		StringBuilder savePath = new StringBuilder(Mvcs.getServletContext().getRealPath("/"));
-		savePath.append("/kindeditor/attached/");
+		savePath.append("/script/kindeditor/attached/");
 		savePath.append(dirName).append("/");
 		savePath.append(ymd).append("/");
 		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -93,7 +101,7 @@ public class KindEditorModule {
 
 		// 文件保存目录URL
 		StringBuilder saveUrl = new StringBuilder(Mvcs.getReq().getContextPath());
-		saveUrl.append("/kindeditor/attached/");
+		saveUrl.append("/script/kindeditor/attached/");
 		saveUrl.append(dirName).append("/");
 		saveUrl.append(ymd).append("/");
 		saveUrl.append(newFileName);
@@ -170,8 +178,8 @@ public class KindEditorModule {
 	public Object list() {
 
 		String[] fileTypes = new String[]{"gif", "jpg", "jpeg", "png", "bmp"};// 图片扩展名
-		StringBuilder rootPath = new StringBuilder(Mvcs.getServletContext().getRealPath("/")).append("/kindeditor/attached/");
-		StringBuilder rootUrl = new StringBuilder(Mvcs.getReq().getContextPath()).append("/kindeditor/attached/");
+		StringBuilder rootPath = new StringBuilder(Mvcs.getServletContext().getRealPath("/")).append("/script/kindeditor/attached/");
+		StringBuilder rootUrl = new StringBuilder(Mvcs.getReq().getContextPath()).append("/script/kindeditor/attached/");
 
 		// 检查请求目录合法性
 		String dirName = Mvcs.getReq().getParameter("dir");

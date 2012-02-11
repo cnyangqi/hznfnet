@@ -9,16 +9,16 @@ String ctx=request.getContextPath();
 <head>
 	<meta charset="utf-8" />
 	<title>KindEditor JSP</title>
-	<link rel="stylesheet" href="${ctx}/kindeditor/themes/default/default.css" />
-	<link rel="stylesheet" href="${ctx}/kindeditor/plugins/code/prettify.css" />
-	<script charset="utf-8" src="${ctx}/kindeditor/kindeditor.js"></script>
-	<script charset="utf-8" src="${ctx}/kindeditor/lang/zh_CN.js"></script>
-	<script charset="utf-8" src="${ctx}/kindeditor/plugins/code/prettify.js"></script>
+	<link rel="stylesheet" href="${ctx}/script/kindeditor/themes/default/default.css" />
+	<link rel="stylesheet" href="${ctx}/script/kindeditor/plugins/code/prettify.css" />
+	<script charset="utf-8" src="${ctx}/script/kindeditor/kindeditor.js"></script>
+	<script charset="utf-8" src="${ctx}/script/kindeditor/lang/zh_CN.js"></script>
+	<script charset="utf-8" src="${ctx}/script/kindeditor/plugins/code/prettify.js"></script>
 	<script>
 	
 		KindEditor.ready(function(K) {
 			var editor = K.create('textarea[name="content"]', {
-				cssPath : '${ctx}/kindeditor/plugins/code/prettify.css',
+				cssPath : '${ctx}/script/kindeditor/plugins/code/prettify.css',
 				uploadJson : '${ctx}/kindeditor/upload',
 				fileManagerJson : '${ctx}/kindeditor/list',
 				allowFileManager : true,
