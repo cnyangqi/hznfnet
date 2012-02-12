@@ -24,7 +24,6 @@ import org.nutz.mvc.annotation.AdaptBy;
 import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.Attr;
 import org.nutz.mvc.annotation.Fail;
-import org.nutz.mvc.annotation.Ok;
 import org.nutz.mvc.annotation.Param;
 import org.nutz.mvc.upload.TempFile;
 
@@ -45,13 +44,6 @@ import org.nutz.mvc.upload.TempFile;
 public class KindEditorModule {
 
 	private static final Log log = Logs.get();
-
-	/**
-	 * Kind测试文件入口
-	 */
-	@At
-	@Ok("jsp:jsp.kind")
-	public void test() {}
 
 	/**
 	 * 本地文件上传
