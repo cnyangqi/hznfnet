@@ -54,13 +54,16 @@ public class ArticleModule extends EntityService<Article> {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
 			obj.setSequNum(Long.valueOf(sdf.format(new Date())));// 文章序列
 
+			obj.setReviewStatus(true);// 暂时默认系统自动审核发布文章
+			obj.setShowStatus(true);// 暂时默认直接显示发布文章
+
 			dao().insert(obj);
-			return true;
+			return MessageHelp.rtn(true);
 		}
 		catch (Throwable e) {
 			if (log.isDebugEnabled())
 				log.debug("E!!", e);
-			return false;
+			return MessageHelp.rtn(false);
 		}
 	}
 
