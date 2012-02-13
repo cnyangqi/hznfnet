@@ -10,20 +10,20 @@
 <head>
 <meta charset="utf-8" />
 <title>发布文章</title>
-<link rel="stylesheet" href="${ctx}/script/kindeditor/themes/default/default.css" />
-<link rel="stylesheet" href="${ctx}/script/kindeditor/plugins/code/prettify.css" />
-<script charset="utf-8" src="${ctx}/script/kindeditor/kindeditor.js"></script>
-<script charset="utf-8" src="${ctx}/script/kindeditor/lang/zh_CN.js"></script>
-<script charset="utf-8" src="${ctx}/script/kindeditor/plugins/code/prettify.js"></script>
+<link rel="stylesheet" href="${ctx}/js/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="${ctx}/js/kindeditor/plugins/code/prettify.css" />
+<script charset="utf-8" src="${ctx}/js/kindeditor/kindeditor.js"></script>
+<script charset="utf-8" src="${ctx}/js/kindeditor/lang/zh_CN.js"></script>
+<script charset="utf-8" src="${ctx}/js/kindeditor/plugins/code/prettify.js"></script>
 
-<script type="text/javascript" src="${ctx}/script/jquery/jquery-1.7.1.min.js"></script>
-<script type="text/javascript" src="${ctx}/script/admin/jquery.form.js"></script>
+<script type="text/javascript" src="${ctx}/js/common/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="${ctx}/js/admin/jquery.form.js"></script>
 <script>
 	var editor;
 
 	KindEditor.ready(function(K) {
 			editor = K.create('textarea[name="content"]', {
-			cssPath : '${ctx}/script/kindeditor/plugins/code/prettify.css',
+			cssPath : '${ctx}/js/kindeditor/plugins/code/prettify.css',
 			uploadJson : '${ctx}/kindeditor/upload',
 			fileManagerJson : '${ctx}/kindeditor/list',
 			allowFileManager : true,
@@ -39,13 +39,14 @@
 				});
 			}
 		});
+			
 		prettyPrint();
-	});
-
-	$(function() {
 		
 		$('#article').ajaxForm({
 			dataType : 'json',
+			beforeSubmit: function(arr, $form, options){
+				editor.sync();
+			},
 			success : function(data) {
 				if (data.rtn) {
 					alert('发布文章成功。');

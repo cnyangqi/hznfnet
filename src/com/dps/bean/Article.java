@@ -53,6 +53,11 @@ public class Article {
 	@Column("author")
 	private String author;
 	/**
+	 * 文章地址
+	 */
+	@Column("url")
+	private String url;
+	/**
 	 * 发布账户
 	 */
 	@Column("publish_account")

@@ -79,7 +79,7 @@ public class KindEditorModule {
 
 		// 文件保存目录路径
 		StringBuilder savePath = new StringBuilder(Mvcs.getServletContext().getRealPath("/"));
-		savePath.append("/script/kindeditor/attached/");
+		savePath.append("/html/attached/");
 		savePath.append(dirName).append("/");
 		savePath.append(ymd).append("/");
 		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -93,7 +93,7 @@ public class KindEditorModule {
 
 		// 文件保存目录URL
 		StringBuilder saveUrl = new StringBuilder(Mvcs.getReq().getContextPath());
-		saveUrl.append("/script/kindeditor/attached/");
+		saveUrl.append("/html/attached/");
 		saveUrl.append(dirName).append("/");
 		saveUrl.append(ymd).append("/");
 		saveUrl.append(newFileName);
@@ -170,8 +170,8 @@ public class KindEditorModule {
 	public Object list() {
 
 		String[] fileTypes = new String[]{"gif", "jpg", "jpeg", "png", "bmp"};// 图片扩展名
-		StringBuilder rootPath = new StringBuilder(Mvcs.getServletContext().getRealPath("/")).append("/script/kindeditor/attached/");
-		StringBuilder rootUrl = new StringBuilder(Mvcs.getReq().getContextPath()).append("/script/kindeditor/attached/");
+		StringBuilder rootPath = new StringBuilder(Mvcs.getServletContext().getRealPath("/")).append("/html/attached/");
+		StringBuilder rootUrl = new StringBuilder(Mvcs.getReq().getContextPath()).append("/html/attached/");
 
 		// 检查请求目录合法性
 		String dirName = Mvcs.getReq().getParameter("dir");
