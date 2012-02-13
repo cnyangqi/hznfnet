@@ -59,7 +59,13 @@ public class ArticleModule extends EntityService<Article> {
 		try {
 			obj.setContent(htmlspecialchars(obj.getContent()));// 转换文章正文中特殊的HTML字符
 			obj.setCreateDate(new Date());// 创建日期
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+
+			/**
+			 * 修改日期格式由yyyyMMddHHmmssSSS为yyyyMMddHHmmssSS。18位长度的数字，
+			 * 由后台返回到前台的数据在JavaScript下JSON，值会有不相等现象，表现在末尾一位。
+			 */
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSS");
+
 			obj.setSequNum(Long.valueOf(sdf.format(new Date())));// 文章序列
 
 			obj.setReviewStatus(true);// 暂时默认系统自动审核发布文章

@@ -12,18 +12,18 @@
 <!--[if lte IE 7]>
 <link rel="stylesheet" href="styles/ie.css" type="text/css" media="screen" />
 <![endif]-->
-<script type="text/javascript" src="${ctx}/script/jquery/jquery-1.7.1.min.js"></script>
-<script type="text/javascript" src="${ctx}/script/admin/facebox.js"></script>
-<script type="text/javascript" src="${ctx}/script/admin/jquery.form.js"></script>
-<script type="text/javascript" src="${ctx}/script/admin/jquery.bgiframe.min.js"></script>
-<script type="text/javascript" src="${ctx}/script/admin/jquery.datePicker-min.js"></script>
+<script type="text/javascript" src="${ctx}/js/common/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="${ctx}/js/admin/facebox.js"></script>
+<script type="text/javascript" src="${ctx}/js/admin/jquery.form.js"></script>
+<script type="text/javascript" src="${ctx}/js/admin/jquery.bgiframe.min.js"></script>
+<script type="text/javascript" src="${ctx}/js/admin/jquery.datePicker-min.js"></script>
 <!--[if IE 6]>
 <script type="text/javascript" src="script/DD_belatedPNG_0.0.8a.js"></script>
 <script type="text/javascript">
 	DD_belatedPNG.fix('.png_bg, img, li');
 </script>
 <![endif]-->
-<script type="text/javascript" src="${ctx}/script/admin/simpla.jquery.configuration.js"></script>
+<script type="text/javascript" src="${ctx}/js/admin/simpla.jquery.configuration.js"></script>
 <script>
 	function load(url) {
 		$("#main-content").html("");

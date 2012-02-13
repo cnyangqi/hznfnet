@@ -66,13 +66,18 @@
 <body>
 
 	<form id="article" name="article" method="post" action="/article/add">
-		文章标题：<input name="title" style="width: 80%;" /> <br /> <br /> 文章类型： <select name="type" style="margin-left: -9px;">
+		文章标题：<input name="title" style="width: 80%;" /> <br /> <br />
+		文章类型：
+		<select name="type" style="margin-left: -9px;">
 			<option value="1">网站新闻</option>
-		</select> <br /> <br /> 作&nbsp;&nbsp;&nbsp;&nbsp;者：<input name="author" style="width: 20%;" /> <br /> <br />
+		</select>
+		<br /> <br />
+		作&nbsp;&nbsp;&nbsp;&nbsp;者：<input name="author" style="width: 20%;" /> <br /> <br />
 		来&nbsp;&nbsp;&nbsp;&nbsp;源：<input name="source" style="width: 20%;" /> <br /> <br />
 		<textarea name="content" cols="100" rows="8" style="width: 700px; height: 350px; visibility: hidden;"></textarea>
-		<br /> <font style="font-size: 12px; float: right; margin-top: 5px;">(提交快捷键: Ctrl + Enter)</font> <input
-			type="submit" name="submitBtn" value="发布文章" style="float: right;" />
+		<br />
+		<font style="font-size: 12px; float: right; margin-top: 5px;">(提交快捷键: Ctrl + Enter)</font>
+		<input type="submit" name="submitBtn" value="发布文章" style="float: right;" />
 	</form>
 </body>
 </html>
