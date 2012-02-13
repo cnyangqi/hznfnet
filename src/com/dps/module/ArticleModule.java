@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.nutz.dao.Cnd;
+import org.nutz.dao.Condition;
 import org.nutz.dao.pager.Pager;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.log.Log;
@@ -33,7 +35,13 @@ public class ArticleModule extends EntityService<Article> {
 		if (rows < 1)
 			rows = 10;
 		Pager pager = dao().createPager(page, rows);
-		List<Article> list = dao().query(Article.class, null, pager);
+
+		Condition c = Cnd.where("reviewStatus", "=", true)
+							.and("showStatus", "=", true)
+							.desc("topStatus")
+							.desc("sequNum");
+
+		List<Article> list = dao().query(Article.class, c, pager);
 		Map<String, Object> map = new HashMap<String, Object>();
 		if (pager != null) {
 			pager.setRecordCount(dao().count(Article.class));

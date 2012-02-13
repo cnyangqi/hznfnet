@@ -1,14 +1,11 @@
+<#import "/common.ftl" as common>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-	<title>杭州农副物流网络科技有限公司 - 首页</title>
-	<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" type="text/css" href="styles/main.css" />
-    <link rel="stylesheet" type="text/css" href="styles/css.css" />
-</head>
-<body>
+<#-- 统一过滤转义变量中的特殊HTML字符 -->
+<#escape x as x?html>
 
+<@common.page site="${site}" title="${title}">
+
+<#-- body内容 -->
 <div class="index">
 <div class="container">
 
@@ -98,6 +95,6 @@
 </div>
 </div>
 
-</body>
-</html>
+</@common.page>
 
+</#escape>

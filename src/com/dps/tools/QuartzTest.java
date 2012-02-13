@@ -36,7 +36,7 @@ import org.quartz.impl.StdSchedulerFactory;
  * 
  * @author Bill Kratzer
  */
-public class SimpleExample {
+public class QuartzTest {
 
 	public void run() throws Exception {
 		// Logger log = LoggerFactory.getLogger(SimpleExample.class);
@@ -100,7 +100,7 @@ public class SimpleExample {
 
 	public static void main(String[] args) throws Exception {
 
-		SimpleExample example = new SimpleExample();
+		QuartzTest example = new QuartzTest();
 		example.run();
 
 	}
