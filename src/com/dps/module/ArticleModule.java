@@ -85,13 +85,10 @@ public class ArticleModule extends EntityService<Article> {
 
 			dao().insert(obj);
 
-			/** 生成新闻页面 */
+			/** 生成新闻对象页面 */
 			generateNewsPage(obj);
 
-			/** 更新网站首页 */
-			generateIndexPage();
-			/** 更新新闻索引页面 */
-			generateNewsListPage();
+			generateAllPage();
 
 			return MessageHelp.rtn(true);
 		}
@@ -287,6 +284,19 @@ public class ArticleModule extends EntityService<Article> {
 		}
 
 		return true;
+	}
+
+	/**
+	 * 自动生成前台所有页面
+	 */
+	@At("/genall")
+	public void generateAllPage() {
+
+		/** 更新网站首页 */
+		generateIndexPage();
+		/** 更新新闻索引页面 */
+		generateNewsListPage();
+
 	}
 
 	/**
