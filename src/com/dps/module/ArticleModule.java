@@ -88,6 +88,11 @@ public class ArticleModule extends EntityService<Article> {
 			/** 生成新闻页面 */
 			generateNewsPage(obj);
 
+			/** 更新网站首页 */
+			generateIndexPage();
+			/** 更新新闻索引页面 */
+			generateNewsListPage();
+
 			return MessageHelp.rtn(true);
 		}
 		catch (Throwable e) {
@@ -166,33 +171,64 @@ public class ArticleModule extends EntityService<Article> {
 	}
 
 	/**
-	 * 生成新闻导航页
+	 * 生成新闻索引页面
 	 */
 	@SuppressWarnings("unchecked")
 	@At("/gennewslist")
 	public boolean generateNewsListPage() {
+		/** 定义索引页面每页显示文章数量 */
+		final int rows = 10;
 
 		String base = Mvcs.getServletContext().getRealPath("/");
 		/** 模板目录 */
 		StringBuilder templateDir = new StringBuilder(base).append("/WEB-INF/template");
 		/** 输出文件 */
-		StringBuilder filePath = new StringBuilder(base).append("/html/index.html");
+		String filePath = new StringBuilder(base).append("/html/newsList1.html").toString();
 
 		try {
 			Configuration cfg = new Configuration();
 			cfg.setDirectoryForTemplateLoading(new File(templateDir.toString()));
 			cfg.setObjectWrapper(new DefaultObjectWrapper());
 
-			Template template = cfg.getTemplate("index.ftl");
+			Template template = cfg.getTemplate("newslist.ftl");
 
 			Map<String, Object> root = new HashMap<String, Object>();
 			root.put("site", "杭州农副物流网络科技有限公司");
-			root.put("title", "首页");
+			root.put("title", "公司要闻");
 
-			Map<String, Object> map = (Map<String, Object>) list(1, 6);
+			Map<String, Object> map = (Map<String, Object>) list(1, rows);
 			root.put("result", map.get("list"));
+			root.put("pager", map.get("pager"));
+			root.put("index", 1);
 
-			Writer out = new BufferedWriter(new OutputStreamWriter(	new FileOutputStream(new File(filePath.toString())),
+			/** 遍历生成所有索引分页面 */
+			Pager pager = (Pager) map.get("pager");
+			int pageCount = pager.getPageCount();
+			if (pageCount > 1) {
+				for (int i = 2; i <= pageCount; i++) {
+					Map<String, Object> sunRoot = new HashMap<String, Object>();
+					sunRoot.put("site", "杭州农副物流网络科技有限公司");
+					sunRoot.put("title", "公司要闻");
+
+					/** 页面索引 */
+					sunRoot.put("index", i);
+
+					Map<String, Object> tmp = (Map<String, Object>) list(i, rows);
+					sunRoot.put("result", tmp.get("list"));
+					sunRoot.put("pager", tmp.get("pager"));
+
+					Writer sunOut = new BufferedWriter(new OutputStreamWriter(	new FileOutputStream(new File(filePath.replaceAll(	"newsList\\d+",
+																																	"newsList"
+																																			+ i))),
+																				"utf-8"));
+
+					template.process(sunRoot, sunOut);
+					sunOut.flush();
+				}
+			}
+			/** 遍历生成所有索引页面结束 */
+
+			Writer out = new BufferedWriter(new OutputStreamWriter(	new FileOutputStream(new File(filePath)),
 																	"utf-8"));
 			template.process(root, out);
 			out.flush();

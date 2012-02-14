@@ -69,7 +69,7 @@
 		</div>
 		
 		<div class="container-lower-button">
-			<a href="newsList.html">
+			<a href="newsList1.html">
 			<img alt="" src="images/xanniu.jpg" border="0" /></a></div>
 		</div>
 		

@@ -1,6 +1,3 @@
-<#-- 统一过滤转义变量中的特殊HTML字符 -->
-<#escape x as x?html>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -11,10 +8,8 @@
     <link href="styles/leftsidebar.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-
-<#-- body内容 -->
 <div class="aboutus">
-<div class="container" id="newsDetail">
+<div class="container" id="newsList">
 
 <div class="header">
     <div class="logo">
@@ -58,32 +53,59 @@
     </div>
 </div>
 
-<div class="subpage">
-	<div class="subpage-news">
-		<div class="subpage-news-title">${article.title}</div>
-		<div class="subpage-news-time">${article.createDate?date}</div>
-		<div class="subpage-news-content">
-			<#noescape>${article.content}</#noescape>
-		</div>
-	</div>
+<div class="subpage" style="height: 710px;">
+<div class="subpage-upper"><img alt="" src="images/yaowentu.jpg" width="635" height="151" /></div>
+
+<div class="subpage-lower">
+	<ul>
+		<#list result as article>
+			<li><label class="title"><a href="${article.url}">${article.title}</a></label>${article.createDate?date}</li>
+		</#list>
+	</ul>
+</div>
+                    
+<div id="pager" class="asppager">
+
+	<#-- 当分页只有1页或者分页是首页的时候不显示首页和上一页超链接 -->
+	<#if (pager.pageCount>1) && (index>1)>
+		<a class="firstlastbutton" href="newsList1.html" disabled="disabled" style="margin-right:5px;">首页</a>
+		<a class="firstlastbutton" href="newsList${index-1}.html" disabled="disabled" style="margin-right:5px;">上一页</a>
+	</#if>
+	
+	<#list 1..pager.pageCount as i>
+		<#if i==index>
+				<a href="newsList.html" class="active_tnt_link" style="margin-right:5px;">${index}</a>
+			<#else>
+				<a href="newsList${i}.html" class="pagebutton" style="margin-right:5px;">${i}</a>
+		</#if>
+	</#list>
+	
+	<#-- 当分页只有1页或者分页是最后1页的时候不显示下一页与尾页超链接 -->
+	<#if (pager.pageCount>1) && (pager.pageCount!=index)>
+		<a class="firstlastbutton" href="newsList${index+1}.html" style="margin-right:5px;">下一页</a>
+		<a class="firstlastbutton" href="newsList${pager.pageCount}.html" style="margin-right:5px;">尾页</a>
+	</#if>
+	
 </div>
 
 </div>
+            
 </div>
-        
-<div id="end" class="end">
+</div>
+
+<div class="end">
+            
 <div id="footer" class="footer">
-	<div id="ftxet" class="ftext">
-		<p align="left">
-		地址：杭州市余杭区良渚镇博园路28号粮油市场办公大楼四楼<br />
-		Copyright©2010-2012 版权所有 All Rights Reserved.<br />
-		中国·杭州 浙ICP备09076267号
-		</p>
-	</div>
-</div>
+    <div id="ftxet" class="ftext">
+        <p align="left">
+			地址：杭州市余杭区良渚镇博园路28号粮油市场办公大楼四楼<br />
+			Copyright©2010-2012 版权所有 All Rights Reserved.<br />
+			中国·杭州 浙ICP备09076267号
+        </p>
+    </div>
 </div>
 
+</div>
 </div>
 </body>
 </html>
-</#escape>
