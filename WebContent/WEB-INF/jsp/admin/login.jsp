@@ -35,7 +35,7 @@
 		<!-- End #logn-top -->
 
 		<div id="login-content">
-			<form action="/cms/admin/login" method="post">
+			<form action="/admin" method="post">
 				<div class="notification information png_bg">
 					<div>请输入用户账户和密码后登录</div>
 				</div>
