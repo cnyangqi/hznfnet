@@ -92,4 +92,5 @@ public class Article {
 	 */
 	@Column("review_status")
 	private Boolean reviewStatus;
+
 }
